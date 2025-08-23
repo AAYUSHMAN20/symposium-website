@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Symposium Management Header</title>
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="./assest/css/style.css">
+   
+   <style>
+    /* Reset some default styles */
+  </style>
+</head>
+<body>
+  <video autoplay muted loop playsinline id="background-video">
+    <source src="https://videos.pexels.com/video-files/3205624/3205624-hd_1920_1080_25fps.mp4">
+    </video>
+    <header>
+      <div class="logo" aria-label="Symposium Management Logo">
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <circle cx="32" cy="32" r="30" stroke="white" stroke-width="4" fill="none"/>
+          <path d="M20 44 L32 20 L44 44 Z" />
+        </svg>
+          Symposium Management
+      </div>
+      <nav aria-label="Primary Navigation">
+        <button type="button" onclick="window.location.href='index.html'">Home</button>
+        <button type="button" onclick="window.location.href='about.html'">About Us</button>
+        <button type="button" onclick="window.location.href='event.html'">Events</button>
+        <button type="button" onclick="window.location.href='contact.html'">Contact Us</button>
+      </nav>
+      <div class="auth-buttons" style="position: relative;">
+        <button type="button" class="btn btn-darkgrey" data-bs-toggle="modal" data-bs-target="#myModal">
+          Student Login
+        </button>
+        <button type="button" id="facultyloginBtn">Faculty login</button>
+      </div>
+    </header>
+
+    <section class="quotes-section" aria-label="Inspirational Quotes">
+      <div>"Education is the most powerful weapon which you can use to change the world."</div>
+    </section>
+   
+<!-- Explore Seminars button opens the large modal -->
+  <button class="btn btn-primary explore-button" aria-label="Explore Seminars Button"
+          data-bs-toggle="modal" data-bs-target="#exploreModal">
+    Explore Seminars
+  </button>
+
+  <!-- ========== EXPLORE SEMINARS MODAL (holds classified list) ========== -->
+  <div class="modal fade" id="exploreModal" tabindex="-1" aria-labelledby="exploreModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exploreModalLabel">Explore Seminars — Classified List</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="container">
+            <h2 class="text-center mb-4">Seminar Categories</h2>
+
+            <div class="accordion" id="seminarAccordion">
+
+              <!-- Artificial Intelligence & Machine Learning -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingAI">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAI" aria-expanded="true" aria-controls="collapseAI">
+                    Artificial Intelligence & Machine Learning
+                  </button>
+                </h2>
+                <div id="collapseAI" class="accordion-collapse collapse show" aria-labelledby="headingAI" data-bs-parent="#seminarAccordion">
+                  <div class="accordion-body">
+                    <div class="row">
+                      <!-- Use cards for each seminar -->
+                      <div class="col-md-6 col-lg-4 mb-2">
+                        <div class="card"><div class="card-body">Real-Time AI in Autonomous Drones: Navigation and Obstacle Avoidance</div></div>
+                      </div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">AI-Powered Medical Diagnosis: Deep Learning in Radiology</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Reinforcement Learning for Robotics in Industrial Automation</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Explainable AI (XAI): Techniques and Applications in Healthcare</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Federated Learning in Smart Devices: Privacy-Preserving ML</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">LLMs for Code Generation: Applications and Limitations</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Transfer Learning with Transformers for Low-Resource Languages</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Ethical Challenges of LLMs in Education</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Designing Agentic AI Systems for Autonomous Decision-Making</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Agentic AI in Personalized Healthcare: Chronic Disease Management</div></div></div>
+                      <!-- Add any further AI cards here -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Data Science & Big Data Analytics -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingData">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
+                    Data Science & Big Data Analytics
+                  </button>
+                </h2>
+                <div id="collapseData" class="accordion-collapse collapse" aria-labelledby="headingData" data-bs-parent="#seminarAccordion">
+                  <div class="accordion-body">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Predictive Analytics for Smart Cities: Case Study Using Urban Sensors</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Real-Time Traffic Management Using Big Data Analytics</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Data Science in Agriculture: Crop Yield Prediction Using Satellite Data</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Big Data- Based Improved Data Acquisition and Storage System</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Big Data virtualization in cardiology — Review and Directions</div></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Internet of Things & Edge Computing -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingIOT">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIOT" aria-expanded="false" aria-controls="collapseIOT">
+                    Internet of Things & Edge Computing
+                  </button>
+                </h2>
+                <div id="collapseIOT" class="accordion-collapse collapse" aria-labelledby="headingIOT" data-bs-parent="#seminarAccordion">
+                  <div class="accordion-body">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">IoT in Smart Healthcare: Real-Time Patient Monitoring Systems</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Edge AI in IoT: Case Study on Smart Traffic Systems</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">IoT and Blockchain Integration for Supply Chain Transparency</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Smart Farming with IoT: Resource Optimization</div></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cyber-Security & Privacy -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingCyber">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCyber" aria-expanded="false" aria-controls="collapseCyber">
+                    Cyber-Security & Privacy
+                  </button>
+                </h2>
+                <div id="collapseCyber" class="accordion-collapse collapse" aria-labelledby="headingCyber" data-bs-parent="#seminarAccordion">
+                  <div class="accordion-body">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">AI in Cyber Threat Detection: Anomaly Detection Systems</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Zero Trust Architecture: Enterprise Implementation</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Ransomware Detection with Machine Learning</div></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Blockchain -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingBlock">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBlock" aria-expanded="false" aria-controls="collapseBlock">
+                    Blockchain & Decentralized Systems
+                  </button>
+                </h2>
+                <div id="collapseBlock" class="accordion-collapse collapse" aria-labelledby="headingBlock" data-bs-parent="#seminarAccordion">
+                  <div class="accordion-body">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Blockchain for Secure Identity Management in Government</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Smart Contracts in Real Estate: A Case Study</div></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Computer Vision -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingCV">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCV" aria-expanded="false" aria-controls="collapseCV">
+                    Computer Vision & Image Processing
+                  </button>
+                </h2>
+                <div id="collapseCV" class="accordion-collapse collapse" aria-labelledby="headingCV" data-bs-parent="#seminarAccordion">
+                  <div class="accordion-body">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Facial Recognition for Secure Access — Ethical & Technical Study</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Deepfake Detection Using CNNs</div></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Natural Language Processing -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingNLP">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNLP" aria-expanded="false" aria-controls="collapseNLP">
+                    Natural Language Processing & Conversational AI
+                  </button>
+                </h2>
+                <div id="collapseNLP" class="accordion-collapse collapse" aria-labelledby="headingNLP" data-bs-parent="#seminarAccordion">
+                  <div class="accordion-body">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">NLP in Legal Document Analysis: AI-Powered Contract Review</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Transformer Models in NLP: BERT for Sentiment Analysis</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Generative AI for Content Creation: Marketing with GPT-4</div></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Robotics & others (you can add more categories similarly) -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingRob">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRob" aria-expanded="false" aria-controls="collapseRob">
+                    Robotics & Autonomous Systems
+                  </button>
+                </h2>
+                <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#seminarAccordion">
+                  <div class="accordion-body">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Swarm Robotics in Disaster Response</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">AI-Driven Autonomous Delivery Robots</div></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Emerging & Quantum -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingEmer">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEmer" aria-expanded="false" aria-controls="collapseEmer">
+                    Emerging & Quantum Technologies
+                  </button>
+                </h2>
+                <div id="collapseEmer" class="accordion-collapse collapse" aria-labelledby="headingEmer" data-bs-parent="#seminarAccordion">
+                  <div class="accordion-body">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Quantum Computing for Optimization Problems</div></div></div>
+                      <div class="col-md-6 col-lg-4 mb-2"><div class="card"><div class="card-body">Green 6G Network: Architecture and Technologies</div></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div> <!-- accordion end -->
+          </div> <!-- container end -->
+        </div> <!-- modal-body end -->
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FACULTY LOGIN MODAL ========== -->
+  <div class="modal fade" id="facultyModal" tabindex="-1" aria-labelledby="facultyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="facultyModalLabel">Faculty Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form novalidate>
+            <div class="mb-3">
+              <label for="facultyEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
+              <input type="email" class="form-control" id="facultyEmail" name="facultyEmail" placeholder="Enter your institutional email" required>
+            </div>
+            <div class="mb-3">
+              <label for="facultyPassword" class="form-label">Password <span class="text-danger">*</span></label>
+              <input type="password" class="form-control" id="facultyPassword" name="facultyPassword" placeholder="Enter your password" required>
+            </div>
+            <div class="mb-3">
+              <label for="facultyDepartment" class="form-label">Department <span class="text-danger">*</span></label>
+              <select class="form-select" id="facultyDepartment" name="facultyDepartment" required>
+                <option value="">Select Department</option>
+                <option value="computer-science">Computer Science</option>
+                <option value="engineering">Engineering</option>
+                <option value="business">Business</option>
+                <option value="mathematics">Mathematics</option>
+                <option value="physics">Physics</option>
+                <option value="chemistry">Chemistry</option>
+                <option value="biology">Biology</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="rememberMe">
+              <label class="form-check-label" for="rememberMe">Remember me</label>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Cards arranged below the button in three separate containers -->
+<div class="bottom-cards-row" aria-label="Explore Seminars">
+
+  <div class="bottom-card-container" aria-label="Seminar Digital Marketing Trends 2025" tabindex="0">
+    <div class="card h-250">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">Digital Marketing Trends 2025</h5>
+        <p class="card-text flex-grow-1">Explore the latest trends and strategies in digital marketing to stay ahead in the industry.</p>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-card-container" aria-label="Seminar AI in Business" tabindex="0">
+    <div class="card h-250">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">AI in Business</h5>
+        <p class="card-text flex-grow-1">Learn how artificial intelligence is transforming business operations and decision-making.</p>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-card-container" aria-label="Seminar Leadership & Management" tabindex="0">
+    <div class="card h-250">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">Leadership & Management</h5>
+        <p class="card-text flex-grow-1">Develop essential leadership skills to effectively manage teams and projects.</p>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Bootstrap JS Bundle CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // JavaScript to open faculty modal when button is clicked
+    document.getElementById('facultyloginBtn').addEventListener('click', function() {
+      var facultyModal = new bootstrap.Modal(document.getElementById('facultyModal'));
+      facultyModal.show();
+    });
+  </script>
+  <!-- Bootstrap Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="registerModalLabel">Student login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body with Form -->
+      <div class="modal-body">
+        <form novalidate>
+          <div class="mb-3">
+            <label for="regName" class="form-label">Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="regName" name="regName" placeholder="Enter Your Name" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="regEmail" class="form-label">Email <span class="text-danger">*</span></label>
+            <input type="email" class="form-control" id="regEmail" name="regEmail" placeholder="Enter Your Email" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="regContact" class="form-label">Contact</label>
+            <input type="tel" class="form-control" id="regContact" name="regContact" placeholder="+91 00000-00000" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="regPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="regPassword" name="regPassword" placeholder="" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="regcPassword" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="regcPassword" name="regcPassword" placeholder="" required>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+  <footer class="bg-dark text-white pt-5 pb-5 mt-5" role="contentinfo" aria-label="Page Footer" style="background: linear-gradient(135deg, #343a40, #212529);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <div class="footer-logo d-flex align-items-center" aria-label="Symposium Logo">
+                     <img src="assest/images/logo.jpg" alt="Symposium Logo" style="height: 200px; width: 200px; margin-right: 10px;">
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                  <h5>Contact Us</h5>
+                <ul class="list-unstyled">
+                  <li>Email: <a href="mailto:info@symposium.com" class="text-white">info@symposium.com</a></li>
+                  <li>Phone: <a href="tel:+91 ***** *****" class="text-white">+91 ***** *****</a></li>
+                  <li>Address: 12345 Symposiums ,Conference City, Country</li>
+                </ul>
+            </div>
+            <div class="col-md-3 mb-3">
+                  <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="index.html" class="text-white">Home</a></li>
+                    <li><a href="about.html" class="text-white">About Us</a></li>
+                     <li><a href="events.html" class="text-white">Events</a></li>
+                    <li><a href="contact.html" class="text-white">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 mb-3">
+                  <h5>Partner Sites</h5>
+                <ul class="list-unstyled">
+                    <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener noreferrer" class="text-white">Eventbrite</a></li>
+                    <li><a href="https://www.meetup.com" target="_blank" rel="noopener noreferrer" class="text-white">Meetup</a></li>
+                    <li><a href="https://www.ted.com" target="_blank" rel="noopener noreferrer" class="text-white">TED Talks</a></li>
+                    <li><a href="https://www.coursera.org" target="_blank" rel="noopener noreferrer" class="text-white">Coursera</a></li>
+                    <li><a href="https://www.hostinger.com" target="_blank" rel="noopener noreferrer" class="text-white">Hostinger</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="social-icons d-flex justify-content-center gap-4 mt-3">
+      <!-- Facebook -->
+      <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white fs-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+          <path d="M8.94 6.5H7.5V5.25c0-.4.2-.5.5-.5h.94V3H7.5C6.12 3 5 4.12 5 5.5v1H4v2h1v6h2v-6h1.5l.5-2z"/>
+        </svg>
+      </a>
+      <!-- Twitter -->
+      <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="text-white fs-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+          <path d="M5 15c6 0 9.293-5 9.293-9.293 0-.14 0-.282-.01-.422A6.68 6.68 0 0 0 15 3.542a6.57 6.57 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.084.797A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.766-3.429 3.289 3.289 0 0 0 1.018 4.381A3.323 3.323 0 0 1 .64 6.575v.041a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.615-.057 3.283 3.283 0 0 0 3.067 2.28A6.588 6.588 0 0 1 1 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5 15z"/>
+        </svg>
+      </a>
+      <!-- Bluesky -->
+  <a href="https://bsky.app" target="_blank" rel="noopener noreferrer" aria-label="Bluesky" class="text-white fs-4">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="50" height="50" viewBox="0 0 24 24">
+      <path d="M12 0C5.371 0 0 5.371 0 12s5.371 12 12 12 12-5.371 12-12S18.629 0 12 0zm3.912 17.541c-.806 1.177-2.083 1.843-3.659 1.843-2.364 0-4.252-1.888-4.252-4.251 0-2.364 1.888-4.252 4.252-4.252 1.177 0 2.083.386 2.678 1.006-.482.289-.943.676-1.38 1.157-.261-.337-.639-.533-1.298-.533-1.01 0-1.636.738-1.636 1.622 0 .884.626 1.622 1.636 1.622.939 0 1.408-.606 1.621-1.232h-1.338v-1.224h3.304c.014.137.021.274.021.416 0 .745-.2 1.416-.579 1.926z"/>
+    </svg>
+  </a>
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-white fs-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.71-.52-1.248-1.342-1.248-.822 0-1.358.538-1.358 1.248 0 .694.52 1.248 1.327 1.248h.015zm4.908 8.212V9.359c0-.216.015-.432.08-.586.174-.432.57-.88 1.236-.88.872 0 1.22.664 1.22 1.637v4.864h2.4v-5.208c0-2.79-1.49-4.088-3.48-4.088-1.602 0-2.32.88-2.72 1.5v.04h-.015a5.54 5.54 0 0 1 .015-.04V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+        </svg>
+      </a>
+      <!-- Instagram -->
+      <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white fs-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+          <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/>
+          <path d="M12.5 1h-9A2.5 2.5 0 0 0 1 3.5v9A2.5 2.5 0 0 0 3.5 16h9a2.5 2.5 0 0 0 3.5-3.5v-9A2.5 2.5 0 0 0 12.5 0h-9z"/>
+        </svg>
+      </a>
+      <!-- WhatsApp -->
+    <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="text-white fs-4">
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+      <path d="M13.601 2.326a7.936 7.936 0 0 0-11.243.326A7.936 7.936 0 0 0 0 8c0 1.402.364 2.727 1.058 3.905L0 16l4.198-1.056A7.935 7.935 0 0 0 8 16c4.418 0 8-3.582 8-8a7.935 7.935 0 0 0-2.399-5.674zM8 14.5c-1.244 0-2.434-.326-3.49-.944l-.248-.144-2.49.624.662-2.427-.162-.248a6.513 6.513 0 0 1-.995-3.402A6.525 6.525 0 0 1 8 1.5a6.525 6.525 0 0 1 6.5 6.5c0 3.584-2.916 6.5-6.5 6.5z"/>
+      <path d="M11.414 9.438c-.195-.097-1.154-.569-1.332-.632-.179-.065-.31-.097-.44.098s-.506.632-.62.762c-.114.13-.23.146-.425.049-.195-.097-.824-.304-1.57-.969-.58-.518-.97-1.156-1.084-1.35-.114-.195-.012-.3.085-.397.087-.087.195-.228.293-.341.098-.114.13-.195.195-.325.065-.13.033-.244-.016-.341-.049-.098-.44-1.063-.603-1.455-.159-.383-.321-.331-.44-.337l-.373-.007a.707.707 0 0 0-.51.24c-.176.195-.666.65-.666 1.58s.682 1.837.776 1.965c.098.13 1.34 2.048 3.24 2.871.453.195.806.31 1.08.397.453.146.87.125 1.197.076.366-.054 1.154-.471 1.317-.928.163-.457.163-.85.114-.928-.049-.065-.179-.114-.373-.211z"/>
+    </svg>
+    </a>
+  <!-- Threads -->
+  <a href="https://www.threads.net" target="_blank" rel="noopener noreferrer" aria-label="Threads" class="text-white fs-4">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="50" height="50" viewBox="0 0 24 24">
+      <path d="M12 0C5.371 0 0 5.371 0 12s5.371 12 12 12 12-5.371 12-12S18.629 0 12 0zm3.912 17.541c-.806 1.177-2.083 1.843-3.659 1.843-2.364 0-4.252-1.888-4.252-4.251 0-2.364 1.888-4.252 4.252-4.252 1.177 0 2.083.386 2.678 1.006-.482.289-.943.676-1.38 1.157-.261-.337-.639-.533-1.298-.533-1.01 0-1.636.738-1.636 1.622 0 .884.626 1.622 1.636 1.622.939 0 1.408-.606 1.621-1.232h-1.338v-1.224h3.304c.014.137.021.274.021.416 0 .745-.2 1.416-.579 1.926z"/>
+    </svg>
+  </a>
+  <!-- YouTube -->
+  <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-white fs-4">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="50" height="50" viewBox="0 0 24 24">
+      <path d="M23.498 6.186a2.969 2.969 0 0 0-2.088-2.104C19.622 3.5 12 3.5 12 3.5s-7.622 0-9.41.582A2.969 2.969 0 0 0 .502 6.186C0 7.976 0 12 0 12s0 4.024.502 5.814a2.969 2.969 0 0 0 2.088 2.104C4.378 20.5 12 20.5 12 20.5s7.622 0 9.41-.582a2.969 2.969 0 0 0 2.088-2.104C24 16.024 24 12 24 12s0-4.024-.502-5.814zM8 14.5c-1.244 0-2.434-.326-3.49-.944l-.248-.144-2.49.624.662-2.427-.162-.248a6.513 6.513 0 0 1-.995-3.402A6.525 6.525 0 0 1 8 1.5a6.525 6.525 0 0 1 6.5 6.5c0 3.584-2.916 6.5-6.5 6.5z"/>
+    </svg>
+  </a>
+</div>
+</div>
+    <div class="text-center mt-2">
+      <small>&copy;  Symposium Management. All rights reserved.</small>
+    </div>
+</div>
+</footer>
+</body>
+</html>

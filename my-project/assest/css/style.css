@@ -1,0 +1,325 @@
+        * {
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position:relative;
+            min-height:100vh;
+            margin:0;
+            padding:0;
+            overflow-x:hidden;
+        }
+
+        #background-video {
+            position:fixed;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            object-fit:cover;
+            z-index:-1;
+        }
+
+        #logo-overlay {
+            position:fixed;
+            top:20px;
+            left:20px;
+            max-width:150px;
+            max-height:150px;
+            cursor:pointer;
+            transition:transform 0.3s ease;
+            z-index:10;
+        }
+
+        #logo-overlay:hover {
+            transform:scale(1.1);
+        }
+
+         header {
+            background:rgba(0, 0, 0, 0.5);
+            color:white;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:15px 40px;
+            box-shadow:0 4px 10px rgba(0,0,0,0.3);
+            border-bottom:4px solid white;
+            position:relative;
+            z-index:5;
+        }
+
+        header::after {
+            content:" ";
+            position:absolute;
+            top:-50%;
+            left:-50%;
+            width:200%;
+            height:200%;
+            background:radial-gradient(circle, rgba(255,255,255,0.15) 20%, transparent 70%);
+            animation:pulse 6s infinite;
+            pointer-events:none;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform:scale(1) translate(0, 0);
+                opacity:1;
+            }
+            50% {
+                transform:scale(1.2) translate(10%, 10%);
+                opacity:0.7;
+            }
+        }
+        
+        .logo {
+            display:flex;
+            align-items:center;
+            font-weight:bold;
+            font-size:1.5rem;
+            letter-spacing:1px;
+            text-shadow:0 0 5px rgba(255, 255, 255, 0.7);
+            flex:1;
+        }
+        .logo svg {
+            width:40px;
+            height:40px;
+            margin-right:10px;
+            fill:white;
+            filter:drop-shadow(0 0 3px rgba(255, 255, 255, 0.8));
+        }
+        nav {
+            flex:2;
+            display:flex;
+            justify-content:center;
+            gap:20px;
+        }
+       nav button {
+            background:transparent;
+            border:2px solid black;
+            color:black;
+            padding:8px 16px;
+            font-weight:600;
+            font-size:1rem;
+            border-radius:15px;
+            cursor:pointer;
+            transition:background-color 0.3s ease, color 0.3s ease;
+            background-image:linear-gradient(#fff,#705c32);
+            font-family:sans-serif;
+        }
+                nav button:hover {
+            background-color:black;
+            color:black;
+            background-image:linear-gradient(#705c32,#fff);
+                }
+        .auth-buttons {
+            flex:1;
+            display:flex;
+            justify-content:flex-end;
+            gap:15px;
+            position:relative;
+        }
+        .auth-buttons button {
+            background:transparent;
+            border:2px solid black;
+            color:black;
+            padding:8px 18px;
+            font-weight:700;
+            font-size:1rem;
+            border-radius:20px;
+            font-family:sans-serif;
+            cursor:pointer;
+            transition:background-color 0.3s ease, color 0.3s ease;
+            background-image:linear-gradient(#4e657c,#fff);
+        }
+        .auth-buttons button:hover {
+            background-color:#ddd;
+             background-image:linear-gradient(#fff,#4e657c);
+        }
+        
+        }
+        @media (max-width:600px) {
+            header {
+                flex-direction:column;
+                align-items:flex-start;
+                padding:15px 20px;
+            }
+            nav {
+                flex:none;
+                width:100%;
+                justify-content:space-around;
+                margin:10px 0;
+            }
+            .auth-buttons {
+                flex:none;
+                width:100%;
+                justify-content:space-around;
+                margin-bottom:10px;
+            }
+            nav button, .auth-buttons button {
+                width:45%;
+                padding:10px 0;
+                font-size:1rem;
+            }
+            #registerFormOverlay form {
+                width:90vw;
+                padding:20px 25px;
+            }
+        }
+        .quotes-section {
+            color:#fff;
+            font-family:'Georgia', serif;
+            padding:40px 20px 20px 20px;
+            text-align:center;
+            font-style:italic;
+            font-size:1.8rem;
+            font-weight:1000;
+            margin-top:40px;
+            max-width:900px;
+            margin-left:auto;
+            margin-right:auto;
+            position:relative;
+            z-index:10;
+        }
+        .explore-button {
+            display:block;
+            margin:30px auto 0 auto;
+            padding:12px 30px;
+            font-size:1.4rem;
+            font-weight:700;
+            Font-family:serif;
+            color:white;
+            background-color:#587070;
+            border:#000000;
+            border-radius:25px;
+            cursor:pointer;
+            transition:background-color 0.3s ease;
+            text-align:center;
+            width:max-content;
+            position:relative;
+            z-index:10;
+        }
+        .explore-button:hover {
+            background-color:teal; 
+        
+        }
+        /* Cards container below button with more top margin to shift lower */
+        .bottom-cards-row {
+            max-width:1000px;
+            margin:80px auto 40px auto;
+            position:relative;
+            z-index:10;
+            display:flex;
+            flex-direction:row;
+            justify-content:center;
+            gap:20px;
+            flex-wrap:nowrap;
+        }
+        .bottom-card-container {
+            max-width:320px;
+            background:rgba(255, 255, 255, 0.85);
+            padding:20px 30px;
+            border-radius:15px;
+            box-shadow:0 8px 20px rgba(0,0,0,0.2);
+            margin:10px auto;
+            flex-shrink:0;
+        }
+        /* Full page register form overlay */
+        #registerFormOverlay {
+            display:none;
+            position:fixed;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            background:rgba(0,0,0,0.8);
+            z-index:1000;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+        #registerFormOverlay form {
+            background-image:linear-gradient(ivory,lightgray);
+            padding:40px 40px;
+            border-radius:15px;
+            width:320px;
+            max-width:90vw;
+            color:black;
+            position:relative;
+            box-shadow:0 8px 30px rgba(0,0,0,0.5);
+        }
+        #registerFormOverlay label {
+            display:block;
+            margin-bottom:8px;
+            font-weight:600;
+            font-size:1.3rem;
+        }
+        #registerFormOverlay input {
+            width:100%;
+            padding:8px 10px;
+            margin-bottom:15px;
+            border:1px solid black;
+            border-radius:6px;
+            font-size:1rem;
+        }
+        span{
+            color:red;
+        }
+        #registerFormOverlay button[type="submit"] {
+            width:100%;
+            padding:10px 0;
+            background-color:#03a8fe;
+            color:white;
+            border:none;
+            border-radius:10px;
+            font-weight:700;
+            cursor:pointer;
+            transition:background-color 0.3s ease;
+            font-size:1.1rem;
+        }
+        #registerFormOverlay button[type="submit"]:hover {
+            background-color:#3b4a5a;
+        }
+        #closeRegisterForm {
+            position:absolute;
+            top:10px;
+            right:15px;
+            background:transparent;
+            border:none;
+            font-size:1.5rem;
+            font-weight:bold;
+            cursor:pointer;
+            color:#000000;
+        }
+        .contact-section {
+      padding: 80px 0;
+      background: linear-gradient(grey, transparent);
+      color: white;
+    }
+    .contact-section :hover{
+        background: linear-gradient(transparent, grey);
+    }
+  
+    .contact-form {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+      positon:center;
+    }
+    
+    .form-control {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+    }
+    
+    .btn-primary {
+      background: #90a0a1;
+      border: none;
+      color: #333;
+      font-weight: bold;
+    }
