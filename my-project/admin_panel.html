@@ -40,10 +40,20 @@
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="admin-card p-4">
-                    <div class="text-end">
-                        <button class="btn btn-outline-danger logout-btn" onclick="logout()">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </button>
+                    <div class="d-flex justify-content-between align-items-start mb-4">
+                        <div>
+                            <button class="btn btn-primary btn-lg position-relative" onclick="window.location.href='messages.html'">
+                                <i class="fas fa-envelope"></i> View Contact Messages
+                                <span id="unreadBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display: none;">
+                                    0
+                                </span>
+                            </button>
+                        </div>
+                        <div class="text-end">
+                            <button class="btn btn-outline-danger logout-btn" onclick="logout()">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                        </div>
                     </div>
                     
                     <div class="text-center mb-4">
@@ -55,31 +65,45 @@
 
                     <!-- Statistics Cards -->
                     <div class="row mb-4">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="admin-card stats-card">
                                 <div class="stats-number" id="totalFaculty">0</div>
                                 <p class="text-muted">Total Faculty</p>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="admin-card stats-card">
                                 <div class="stats-number" id="totalStudents">0</div>
                                 <p class="text-muted">Total Students</p>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="admin-card stats-card">
                                 <div class="stats-number" id="totalSeminars">0</div>
                                 <p class="text-muted">Total Seminars</p>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="admin-card stats-card">
                                 <div class="stats-number" id="todayRegistrations">0</div>
                                 <p class="text-muted">Today's Registrations</p>
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <div class="admin-card stats-card">
+                                <div class="stats-number" id="totalMessages">0</div>
+                                <p class="text-muted">Total Messages</p>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="admin-card stats-card">
+                                <div class="stats-number" id="unreadMessages">0</div>
+                                <p class="text-muted">Unread Messages</p>
+                            </div>
+                        </div>
                     </div>
+
+
 
                     <!-- Add Faculty Section -->
                     <div class="admin-card p-4 mb-4">
@@ -227,6 +251,18 @@
                     document.getElementById('totalStudents').textContent = result.statistics.total_students;
                     document.getElementById('totalSeminars').textContent = result.statistics.total_seminars;
                     document.getElementById('todayRegistrations').textContent = result.statistics.today_registrations;
+                    document.getElementById('totalMessages').textContent = result.statistics.total_messages || 0;
+                    document.getElementById('unreadMessages').textContent = result.statistics.unread_messages || 0;
+                    
+                    // Update unread badge
+                    const unreadBadge = document.getElementById('unreadBadge');
+                    const unreadCount = result.statistics.unread_messages || 0;
+                    if (unreadCount > 0) {
+                        unreadBadge.textContent = unreadCount;
+                        unreadBadge.style.display = 'block';
+                    } else {
+                        unreadBadge.style.display = 'none';
+                    }
                 } else {
                     console.error('Failed to load statistics:', result.message);
                     // Use fallback values
@@ -234,6 +270,11 @@
                     document.getElementById('totalStudents').textContent = '0';
                     document.getElementById('totalSeminars').textContent = '0';
                     document.getElementById('todayRegistrations').textContent = '0';
+                    document.getElementById('totalMessages').textContent = '0';
+                    document.getElementById('unreadMessages').textContent = '0';
+                    
+                    // Hide unread badge
+                    document.getElementById('unreadBadge').style.display = 'none';
                 }
             } catch (error) {
                 console.error('Error loading statistics:', error);
@@ -242,6 +283,11 @@
                 document.getElementById('totalStudents').textContent = '0';
                 document.getElementById('totalSeminars').textContent = '0';
                 document.getElementById('todayRegistrations').textContent = '0';
+                document.getElementById('totalMessages').textContent = '0';
+                document.getElementById('unreadMessages').textContent = '0';
+                
+                // Hide unread badge
+                document.getElementById('unreadBadge').style.display = 'none';
             }
         }
 

@@ -54,6 +54,16 @@ try {
     $seminarStmt->execute();
     $totalSeminars = $seminarStmt->fetch()['total'];
     
+    // Get message statistics
+    $messageStmt = $pdo->prepare("
+        SELECT 
+            COUNT(*) as total_messages,
+            SUM(CASE WHEN is_read = 0 THEN 1 ELSE 0 END) as unread_messages
+        FROM contact_messages
+    ");
+    $messageStmt->execute();
+    $messageStats = $messageStmt->fetch();
+    
     echo json_encode([
         'success' => true,
         'data' => $faculty,
@@ -61,7 +71,9 @@ try {
             'total_faculty' => $totalFaculty,
             'total_students' => $totalStudents,
             'total_seminars' => $totalSeminars,
-            'today_registrations' => $todayRegistrations
+            'today_registrations' => $todayRegistrations,
+            'total_messages' => (int)$messageStats['total_messages'],
+            'unread_messages' => (int)$messageStats['unread_messages']
         ]
     ]);
     
