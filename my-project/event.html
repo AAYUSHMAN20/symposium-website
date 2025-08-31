@@ -186,7 +186,7 @@
             studentData = JSON.parse(localStorage.getItem('studentData') || '{}');
             
             if (userType !== 'student' || !studentData.id) {
-                alert('Please register first to access this page.');
+                alert('Please register as a student first to access this page.');
                 window.location.href = 'index.html';
                 return;
             }
