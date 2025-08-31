@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Symposium Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .qr-code-container {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .seminar-link {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+        .seminar-link:hover {
+            background: #0056b3;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="dashboard-card p-4">
+                    <div class="text-end">
+                        <button class="btn btn-outline-danger logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                    
+                    <div class="text-center mb-4">
+                        <h1 class="display-4 text-primary">
+                            <i class="fas fa-user-graduate"></i> Student Dashboard
+                        </h1>
+                        <p class="lead text-muted">Welcome to your symposium registration portal</p>
+                    </div>
+
+                    <div id="studentInfo" class="row mb-4">
+                        <!-- Student information will be loaded here -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="dashboard-card p-4 h-100">
+                                <h3 class="text-primary mb-3">
+                                    <i class="fas fa-book"></i> Your Seminar Details
+                                </h3>
+                                <div id="seminarDetails">
+                                    <!-- Seminar details will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="dashboard-card p-4 h-100">
+                                <h3 class="text-primary mb-3">
+                                    <i class="fas fa-qrcode"></i> Seminar QR Code
+                                </h3>
+                                <div id="qrCodeContainer" class="qr-code-container">
+                                    <!-- QR code will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="dashboard-card p-4">
+                                <h3 class="text-primary mb-3">
+                                    <i class="fas fa-info-circle"></i> Important Information
+                                </h3>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success"></i> Your registration is complete</li>
+                                    <li><i class="fas fa-check-circle text-success"></i> Seminar topic has been assigned</li>
+                                    <li><i class="fas fa-check-circle text-success"></i> QR code generated for easy access</li>
+                                    <li><i class="fas fa-clock text-warning"></i> Please save your login credentials</li>
+                                    <li><i class="fas fa-clock text-warning"></i> Seminar links will be updated before the event</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Check if user is logged in
+        function checkAuth() {
+            // This would typically check session/token
+            // For now, we'll load data from localStorage if available
+            const studentData = localStorage.getItem('studentData');
+            if (!studentData) {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            loadStudentData(JSON.parse(studentData));
+        }
+
+        function loadStudentData(data) {
+            // Display student information
+            document.getElementById('studentInfo').innerHTML = `
+                <div class="col-md-6">
+                    <div class="dashboard-card p-3">
+                        <h5><i class="fas fa-user"></i> Student Information</h5>
+                        <p><strong>Name:</strong> ${data.name}</p>
+                        <p><strong>Email:</strong> ${data.email}</p>
+                        <p><strong>Roll Number:</strong> ${data.roll_number}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="dashboard-card p-3">
+                        <h5><i class="fas fa-calendar"></i> Registration Date</h5>
+                        <p><strong>Registered:</strong> ${new Date().toLocaleDateString()}</p>
+                        <p><strong>Status:</strong> <span class="badge bg-success">Active</span></p>
+                    </div>
+                </div>
+            `;
+
+            // Display seminar details
+            if (data.seminar_topic) {
+                document.getElementById('seminarDetails').innerHTML = `
+                    <p><strong>Topic:</strong> ${data.seminar_topic}</p>
+                    <p><strong>Category:</strong> <span class="badge bg-info">Technology</span></p>
+                    <a href="${data.seminar_link}" class="seminar-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Access Seminar Link
+                    </a>
+                `;
+
+                // Display QR code
+                document.getElementById('qrCodeContainer').innerHTML = `
+                    <img src="${data.qr_code}" alt="Seminar QR Code" class="img-fluid" style="max-width: 200px;">
+                    <p class="mt-2 text-muted">Scan this QR code to access your seminar</p>
+                `;
+            } else {
+                document.getElementById('seminarDetails').innerHTML = `
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>No Seminar Selected</strong>
+                        <p class="mb-2">You haven't selected a seminar topic yet.</p>
+                        <a href="event.html" class="btn btn-primary btn-sm">
+                            <i class="fas fa-calendar-alt"></i> Select Seminar Topic
+                        </a>
+                    </div>
+                `;
+
+                // Show message instead of QR code
+                document.getElementById('qrCodeContainer').innerHTML = `
+                    <div class="text-center text-muted">
+                        <i class="fas fa-qrcode fa-3x mb-3"></i>
+                        <p>QR code will appear after seminar selection</p>
+                    </div>
+                `;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('studentData');
+            localStorage.removeItem('userType');
+            window.location.href = 'index.html';
+        }
+
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', checkAuth);
+    </script>
+</body>
+</html>

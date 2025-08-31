@@ -31,7 +31,7 @@
         <button type="button" onclick="window.location.href='contact.html'">Contact Us</button>
       </nav>
       <div class="auth-buttons" style="position: relative;">
-        <button type="button" class="btn btn-darkgrey" data-bs-toggle="modal" data-bs-target="#myModal">
+        <button type="button" class="btn btn-darkgrey" data-bs-toggle="modal" data-bs-target="#studentModal">
           Student Login
         </button>
         <button type="button" id="facultyloginBtn">Faculty login</button>
@@ -256,7 +256,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form novalidate>
+          <form id="facultyLoginForm" novalidate>
             <div class="mb-3">
               <label for="facultyEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
               <input type="email" class="form-control" id="facultyEmail" name="facultyEmail" placeholder="Enter your institutional email" required>
@@ -269,14 +269,14 @@
               <label for="facultyDepartment" class="form-label">Department <span class="text-danger">*</span></label>
               <select class="form-select" id="facultyDepartment" name="facultyDepartment" required>
                 <option value="">Select Department</option>
-                <option value="computer-science">Computer Science</option>
-                <option value="engineering">Engineering</option>
-                <option value="business">Business</option>
-                <option value="mathematics">Mathematics</option>
-                <option value="physics">Physics</option>
-                <option value="chemistry">Chemistry</option>
-                <option value="biology">Biology</option>
-                <option value="other">Other</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Engineering">Engineering</option>
+                <option value="Business">Business</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Physics">Physics</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="Biology">Biology</option>
+                <option value="Other">Other</option>
               </select>
             </div>
             <div class="mb-3 form-check">
@@ -322,61 +322,109 @@
 </div>
   <!-- Bootstrap JS Bundle CDN -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // JavaScript to open faculty modal when button is clicked
-    document.getElementById('facultyloginBtn').addEventListener('click', function() {
-      var facultyModal = new bootstrap.Modal(document.getElementById('facultyModal'));
-      facultyModal.show();
-    });
-  </script>
-  <!-- Bootstrap Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h5 class="modal-title" id="registerModalLabel">Student login</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <!-- ========== STUDENT LOGIN/REGISTRATION MODAL ========== -->
+  <div class="modal fade" id="studentModal" tabindex="-1" aria-labelledby="studentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="studentModalLabel">Student Portal</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Tab Navigation -->
+          <ul class="nav nav-tabs" id="studentTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab">
+                <i class="fas fa-sign-in-alt"></i> Login
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab">
+                <i class="fas fa-user-plus"></i> Register
+              </button>
+            </li>
+          </ul>
+
+          <!-- Tab Content -->
+          <div class="tab-content" id="studentTabsContent">
+            <!-- Login Tab -->
+            <div class="tab-pane fade show active" id="login" role="tabpanel">
+              <form id="studentLoginForm" class="mt-3">
+                <div class="mb-3">
+                  <label for="studentLoginEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" id="studentLoginEmail" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-3">
+                  <label for="studentLoginPassword" class="form-label">Password <span class="text-danger">*</span></label>
+                  <input type="password" class="form-control" id="studentLoginPassword" name="password" placeholder="Enter your password" required>
+                </div>
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Registration Tab -->
+            <div class="tab-pane fade" id="register" role="tabpanel">
+              <form id="studentRegisterForm" class="mt-3">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="firstName" class="form-label">First Name <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" id="firstName" name="first_name" placeholder="Enter first name" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="lastName" class="form-label">Last Name <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" id="lastName" name="last_name" placeholder="Enter last name" required>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="studentEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" id="studentEmail" name="email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="contactNumber" class="form-label">Contact Number <span class="text-danger">*</span></label>
+                  <input type="tel" class="form-control" id="contactNumber" name="contact_number" placeholder="+91 00000-00000" required>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="rollNumber" class="form-label">Roll Number <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="rollNumber" name="roll_number" placeholder="Enter your roll number" required>
+                </div>
+                
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                      <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="confirmPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
+                      <input type="password" class="form-control" id="confirmPassword" name="confirm_password" placeholder="Confirm password" required>
+                    </div>
+                  </div>
+                </div>
+                
+
+                
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-success">Register</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <!-- Modal Body with Form -->
-      <div class="modal-body">
-        <form novalidate>
-          <div class="mb-3">
-            <label for="regName" class="form-label">Name <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="regName" name="regName" placeholder="Enter Your Name" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="regEmail" class="form-label">Email <span class="text-danger">*</span></label>
-            <input type="email" class="form-control" id="regEmail" name="regEmail" placeholder="Enter Your Email" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="regContact" class="form-label">Contact</label>
-            <input type="tel" class="form-control" id="regContact" name="regContact" placeholder="+91 00000-00000" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="regPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="regPassword" name="regPassword" placeholder="" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="regcPassword" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" id="regcPassword" name="regcPassword" placeholder="" required>
-          </div>
-
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary w-100">Submit</button>
-          </div>
-        </form>
-      </div>
-
     </div>
   </div>
-</div>
   <footer class="bg-dark text-white pt-5 pb-5 mt-5" role="contentinfo" aria-label="Page Footer" style="background: linear-gradient(135deg, #343a40, #212529);">
     <div class="container">
         <div class="row">
@@ -400,6 +448,7 @@
                     <li><a href="about.html" class="text-white">About Us</a></li>
                      <li><a href="events.html" class="text-white">Events</a></li>
                     <li><a href="contact.html" class="text-white">Contact Us</a></li>
+                    <li><a href="admin_login.html" class="text-white">Admin Panel</a></li>
                 </ul>
             </div>
             <div class="col-md-3 mb-3">
@@ -468,9 +517,183 @@
 </div>
 </div>
     <div class="text-center mt-2">
-      <small>&copy;  Symposium Management. All rights reserved.</small>
+      <small>&copy;  Symposium Management. Designed by mansi sharma and her partner. Devloped by <a href="https://www.linkedin.com/in/aayushman-vijay-5b582418a/" >Aayushman Vijay </a>.</small>
     </div>
 </div>
 </footer>
+
+<script>
+  // Wait for DOM to load before attaching event listeners
+  document.addEventListener('DOMContentLoaded', function() {
+    // JavaScript to open faculty modal when button is clicked
+    const facultyLoginBtn = document.getElementById('facultyloginBtn');
+    if (facultyLoginBtn) {
+      facultyLoginBtn.addEventListener('click', function() {
+        var facultyModal = new bootstrap.Modal(document.getElementById('facultyModal'));
+        facultyModal.show();
+      });
+    }
+
+    // Handle faculty login form submission
+    const facultyLoginForm = document.getElementById('facultyLoginForm');
+    if (facultyLoginForm) {
+      facultyLoginForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const data = {
+          email: formData.get('facultyEmail'),
+          password: formData.get('facultyPassword'),
+          department: formData.get('facultyDepartment')
+        };
+
+        console.log('Faculty login attempt:', { email: data.email, department: data.department });
+
+        try {
+          const response = await fetch('backend/faculty_login.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
+
+          console.log('Faculty login response status:', response.status);
+          
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          console.log('Faculty login result:', result);
+          
+          if (result.success) {
+            // Store faculty data in localStorage
+            localStorage.setItem('facultyData', JSON.stringify({
+              name: result.data?.name || 'Faculty Member',
+              email: data.email,
+              department: data.department
+            }));
+            localStorage.setItem('userType', 'faculty');
+            
+            alert('Login successful!');
+            console.log('Redirecting to:', result.redirect);
+            window.location.href = result.redirect;
+          } else {
+            alert('Login failed: ' + result.message);
+          }
+        } catch (error) {
+          console.error('Faculty login error:', error);
+          alert('An error occurred during login: ' + error.message);
+        }
+      });
+    }
+
+    // Handle student login form submission
+    const studentLoginForm = document.getElementById('studentLoginForm');
+    if (studentLoginForm) {
+      studentLoginForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const data = {
+          email: formData.get('email'),
+          password: formData.get('password')
+        };
+
+        try {
+          const response = await fetch('backend/student_login.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
+
+          const result = await response.json();
+          
+          if (result.success) {
+            // Store student data in localStorage
+            localStorage.setItem('studentData', JSON.stringify({
+              name: result.data.name,
+              email: result.data.student_email || data.email,
+              roll_number: result.data.student_roll,
+              seminar_topic: result.data.seminar_topic,
+              seminar_link: result.data.seminar_link,
+              qr_code: result.data.qr_code
+            }));
+            localStorage.setItem('userType', 'student');
+            
+            alert('Login successful!');
+            window.location.href = result.redirect;
+          } else {
+            alert('Login failed: ' + result.message);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('An error occurred during login');
+        }
+      });
+    }
+
+    // Handle student registration form submission
+    const studentRegisterForm = document.getElementById('studentRegisterForm');
+    if (studentRegisterForm) {
+      studentRegisterForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        console.log('Student registration form submitted');
+        
+        const formData = new FormData(this);
+        const data = {
+          first_name: formData.get('first_name'),
+          last_name: formData.get('last_name'),
+          email: formData.get('email'),
+          contact_number: formData.get('contact_number'),
+          roll_number: formData.get('roll_number'),
+          password: formData.get('password'),
+          confirm_password: formData.get('confirm_password')
+        };
+
+        console.log('Registration data:', data);
+
+        try {
+          const response = await fetch('backend/student_register.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
+
+          console.log('Registration response status:', response.status);
+          const result = await response.json();
+          console.log('Registration result:', result);
+          
+          if (result.success) {
+            // Store student data in localStorage
+            localStorage.setItem('studentData', JSON.stringify({
+              id: result.data.id,
+              name: result.data.name,
+              email: data.email,
+              roll_number: data.roll_number
+            }));
+            localStorage.setItem('userType', 'student');
+            
+            alert('Registration successful! Please select your seminar topic.');
+            window.location.href = 'event.html';
+          } else {
+            alert('Registration failed: ' + result.message);
+          }
+        } catch (error) {
+          console.error('Registration error:', error);
+          alert('An error occurred during registration: ' + error.message);
+        }
+      });
+    } else {
+      console.error('Student registration form not found!');
+    }
+  });
+</script>
 </body>
 </html>

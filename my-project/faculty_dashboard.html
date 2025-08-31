@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard - Symposium Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .student-card {
+            transition: transform 0.2s ease;
+        }
+        .student-card:hover {
+            transform: translateY(-2px);
+        }
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .stats-card {
+            text-align: center;
+            padding: 20px;
+        }
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="dashboard-card p-4">
+                    <div class="text-end">
+                        <button class="btn btn-outline-danger logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                    
+                    <div class="text-center mb-4">
+                        <h1 class="display-4 text-primary">
+                            <i class="fas fa-chalkboard-teacher"></i> Faculty Dashboard
+                        </h1>
+                        <p class="lead text-muted">Manage and view student symposium registrations</p>
+                    </div>
+
+                    <div id="facultyInfo" class="row mb-4">
+                        <!-- Faculty information will be loaded here -->
+                    </div>
+
+                    <!-- Statistics Cards -->
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="dashboard-card stats-card">
+                                <div class="stats-number" id="totalStudents">0</div>
+                                <p class="text-muted">Total Students</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="dashboard-card stats-card">
+                                <div class="stats-number" id="todayRegistrations">0</div>
+                                <p class="text-muted">Today's Registrations</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="dashboard-card stats-card">
+                                <div class="stats-number" id="uniqueTopics">0</div>
+                                <p class="text-muted">Unique Topics</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="dashboard-card stats-card">
+                                <div class="stats-number" id="departmentStudents">0</div>
+                                <p class="text-muted">Your Department</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Search and Filter -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                <input type="text" class="form-control" id="searchInput" placeholder="Search students by name, email, or roll number...">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select" id="topicFilter">
+                                <option value="">All Topics</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-primary w-100" onclick="refreshData()">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Students Table -->
+                    <div class="dashboard-card p-4">
+                        <h3 class="text-primary mb-3">
+                            <i class="fas fa-users"></i> Registered Students
+                        </h3>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Roll Number</th>
+                                        <th>Contact</th>
+                                        <th>Seminar Topic</th>
+                                        <th>Registration Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="studentsTableBody">
+                                    <!-- Students data will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="loadingMessage" class="text-center py-4">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-2">Loading student data...</p>
+                        </div>
+                        <div id="noDataMessage" class="text-center py-4" style="display: none;">
+                            <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">No students registered yet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Details Modal -->
+    <div class="modal fade" id="studentModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Student Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="studentModalBody">
+                    <!-- Student details will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let studentsData = [];
+        let filteredData = [];
+
+        function checkAuth() {
+            const facultyData = localStorage.getItem('facultyData');
+            if (!facultyData) {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            loadFacultyData(JSON.parse(facultyData));
+            loadStudentsData();
+        }
+
+        function loadFacultyData(data) {
+            document.getElementById('facultyInfo').innerHTML = `
+                <div class="col-md-6">
+                    <div class="dashboard-card p-3">
+                        <h5><i class="fas fa-user-tie"></i> Faculty Information</h5>
+                        <p><strong>Name:</strong> ${data.name}</p>
+                        <p><strong>Email:</strong> ${data.email}</p>
+                        <p><strong>Department:</strong> ${data.department}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="dashboard-card p-3">
+                        <h5><i class="fas fa-chart-line"></i> Dashboard Overview</h5>
+                        <p><strong>Last Login:</strong> ${new Date().toLocaleDateString()}</p>
+                        <p><strong>Status:</strong> <span class="badge bg-success">Active</span></p>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function loadStudentsData() {
+            try {
+                const response = await fetch('backend/get_students.php', {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    studentsData = result.data;
+                    filteredData = [...studentsData];
+                    updateStatistics();
+                    updateStudentsTable();
+                    updateTopicFilter();
+                } else {
+                    showError('Failed to load students data: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error loading students:', error);
+                showError('Failed to load students data');
+            }
+        }
+
+        function updateStatistics() {
+            const totalStudents = studentsData.length;
+            const today = new Date().toDateString();
+            const todayRegistrations = studentsData.filter(student => 
+                new Date(student.created_at).toDateString() === today
+            ).length;
+            
+            const uniqueTopics = new Set(studentsData.map(student => student.seminar_topic)).size;
+            
+            document.getElementById('totalStudents').textContent = totalStudents;
+            document.getElementById('todayRegistrations').textContent = todayRegistrations;
+            document.getElementById('uniqueTopics').textContent = uniqueTopics;
+            document.getElementById('departmentStudents').textContent = totalStudents; // Simplified for demo
+        }
+
+        function updateStudentsTable() {
+            const tbody = document.getElementById('studentsTableBody');
+            const loadingMessage = document.getElementById('loadingMessage');
+            const noDataMessage = document.getElementById('noDataMessage');
+            
+            loadingMessage.style.display = 'none';
+            
+            if (filteredData.length === 0) {
+                noDataMessage.style.display = 'block';
+                tbody.innerHTML = '';
+                return;
+            }
+            
+            noDataMessage.style.display = 'none';
+            
+            tbody.innerHTML = filteredData.map(student => `
+                <tr class="student-card">
+                    <td><strong>${student.first_name} ${student.last_name}</strong></td>
+                    <td>${student.email}</td>
+                    <td><span class="badge bg-secondary">${student.roll_number}</span></td>
+                    <td>${student.contact_number}</td>
+                    <td>
+                        <span class="text-truncate d-inline-block" style="max-width: 200px;" title="${student.seminar_topic}">
+                            ${student.seminar_topic}
+                        </span>
+                    </td>
+                    <td>${new Date(student.created_at).toLocaleDateString()}</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary" onclick="viewStudentDetails(${student.id})">
+                            <i class="fas fa-eye"></i> View
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function updateTopicFilter() {
+            const topics = [...new Set(studentsData.map(student => student.seminar_topic))];
+            const filter = document.getElementById('topicFilter');
+            
+            filter.innerHTML = '<option value="">All Topics</option>' + 
+                topics.map(topic => `<option value="${topic}">${topic}</option>`).join('');
+        }
+
+        function filterStudents() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const selectedTopic = document.getElementById('topicFilter').value;
+            
+            filteredData = studentsData.filter(student => {
+                const matchesSearch = student.first_name.toLowerCase().includes(searchTerm) ||
+                                    student.last_name.toLowerCase().includes(searchTerm) ||
+                                    student.email.toLowerCase().includes(searchTerm) ||
+                                    student.roll_number.toLowerCase().includes(searchTerm);
+                
+                const matchesTopic = !selectedTopic || student.seminar_topic === selectedTopic;
+                
+                return matchesSearch && matchesTopic;
+            });
+            
+            updateStudentsTable();
+        }
+
+        function viewStudentDetails(studentId) {
+            const student = studentsData.find(s => s.id === studentId);
+            if (!student) return;
+            
+            document.getElementById('studentModalBody').innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Personal Information</h6>
+                        <p><strong>Name:</strong> ${student.first_name} ${student.last_name}</p>
+                        <p><strong>Email:</strong> ${student.email}</p>
+                        <p><strong>Contact:</strong> ${student.contact_number}</p>
+                        <p><strong>Roll Number:</strong> ${student.roll_number}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Seminar Information</h6>
+                        <p><strong>Topic:</strong> ${student.seminar_topic}</p>
+                        <p><strong>Registration Date:</strong> ${new Date(student.created_at).toLocaleDateString()}</p>
+                        <p><strong>Seminar Link:</strong> <a href="${student.seminar_link}" target="_blank">${student.seminar_link}</a></p>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <h6>QR Code</h6>
+                        <img src="${student.qr_code}" alt="QR Code" class="img-fluid" style="max-width: 200px;">
+                    </div>
+                </div>
+            `;
+            
+            new bootstrap.Modal(document.getElementById('studentModal')).show();
+        }
+
+        function refreshData() {
+            loadStudentsData();
+        }
+
+        function showError(message) {
+            // You can implement a proper error notification system
+            alert(message);
+        }
+
+        function logout() {
+            localStorage.removeItem('facultyData');
+            localStorage.removeItem('userType');
+            window.location.href = 'index.html';
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', filterStudents);
+        document.getElementById('topicFilter').addEventListener('change', filterStudents);
+
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', checkAuth);
+    </script>
+</body>
+</html>

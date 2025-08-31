@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Symposium Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .admin-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .stats-card {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="admin-card p-4">
+                    <div class="text-end">
+                        <button class="btn btn-outline-danger logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                    
+                    <div class="text-center mb-4">
+                        <h1 class="display-4 text-primary">
+                            <i class="fas fa-user-shield"></i> Admin Panel
+                        </h1>
+                        <p class="lead text-muted">Manage faculty registrations and system settings</p>
+                    </div>
+
+                    <!-- Statistics Cards -->
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="admin-card stats-card">
+                                <div class="stats-number" id="totalFaculty">0</div>
+                                <p class="text-muted">Total Faculty</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="admin-card stats-card">
+                                <div class="stats-number" id="totalStudents">0</div>
+                                <p class="text-muted">Total Students</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="admin-card stats-card">
+                                <div class="stats-number" id="totalSeminars">0</div>
+                                <p class="text-muted">Total Seminars</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="admin-card stats-card">
+                                <div class="stats-number" id="todayRegistrations">0</div>
+                                <p class="text-muted">Today's Registrations</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Faculty Section -->
+                    <div class="admin-card p-4 mb-4">
+                        <h3 class="text-primary mb-3">
+                            <i class="fas fa-user-plus"></i> Add New Faculty Member
+                        </h3>
+                        <form id="addFacultyForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="facultyFirstName" class="form-label">First Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="facultyFirstName" name="first_name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="facultyLastName" class="form-label">Last Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="facultyLastName" name="last_name" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="facultyEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
+                                        <input type="email" class="form-control" id="facultyEmail" name="email" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="facultyContact" class="form-label">Contact Number <span class="text-danger">*</span></label>
+                                        <input type="tel" class="form-control" id="facultyContact" name="contact_number" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="facultyId" class="form-label">Faculty ID <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="facultyId" name="faculty_id" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="facultyDepartment" class="form-label">Department <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="facultyDepartment" name="department" required>
+                                            <option value="">Select Department</option>
+                                            <option value="Computer Science">Computer Science</option>
+                                            <option value="Engineering">Engineering</option>
+                                            <option value="Business">Business</option>
+                                            <option value="Mathematics">Mathematics</option>
+                                            <option value="Physics">Physics</option>
+                                            <option value="Chemistry">Chemistry</option>
+                                            <option value="Biology">Biology</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="facultyPassword" class="form-label">Password <span class="text-danger">*</span></label>
+                                        <input type="password" class="form-control" id="facultyPassword" name="password" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="facultyConfirmPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
+                                        <input type="password" class="form-control" id="facultyConfirmPassword" name="confirm_password" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-plus"></i> Add Faculty Member
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Faculty List Section -->
+                    <div class="admin-card p-4">
+                        <h3 class="text-primary mb-3">
+                            <i class="fas fa-users"></i> Faculty Members
+                        </h3>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Faculty ID</th>
+                                        <th>Department</th>
+                                        <th>Contact</th>
+                                        <th>Registration Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="facultyTableBody">
+                                    <!-- Faculty data will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="loadingMessage" class="text-center py-4">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-2">Loading faculty data...</p>
+                        </div>
+                        <div id="noDataMessage" class="text-center py-4" style="display: none;">
+                            <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">No faculty members registered yet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function checkAuth() {
+            // For demo purposes, we'll allow access to admin panel
+            // In production, you should implement proper admin authentication
+            loadStatistics();
+            loadFacultyData();
+        }
+
+        async function loadStatistics() {
+            try {
+                const response = await fetch('backend/get_faculty.php');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                
+                if (result.success && result.statistics) {
+                    document.getElementById('totalFaculty').textContent = result.statistics.total_faculty;
+                    document.getElementById('totalStudents').textContent = result.statistics.total_students;
+                    document.getElementById('totalSeminars').textContent = result.statistics.total_seminars;
+                    document.getElementById('todayRegistrations').textContent = result.statistics.today_registrations;
+                } else {
+                    console.error('Failed to load statistics:', result.message);
+                    // Use fallback values
+                    document.getElementById('totalFaculty').textContent = '0';
+                    document.getElementById('totalStudents').textContent = '0';
+                    document.getElementById('totalSeminars').textContent = '0';
+                    document.getElementById('todayRegistrations').textContent = '0';
+                }
+            } catch (error) {
+                console.error('Error loading statistics:', error);
+                // Use fallback values
+                document.getElementById('totalFaculty').textContent = '0';
+                document.getElementById('totalStudents').textContent = '0';
+                document.getElementById('totalSeminars').textContent = '0';
+                document.getElementById('todayRegistrations').textContent = '0';
+            }
+        }
+
+        async function loadFacultyData() {
+            try {
+                const response = await fetch('backend/get_faculty.php');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    updateFacultyTable(result.data);
+                } else {
+                    console.error('Failed to load faculty data:', result.message);
+                    updateFacultyTable([]);
+                }
+            } catch (error) {
+                console.error('Error loading faculty data:', error);
+                updateFacultyTable([]);
+            }
+        }
+
+        function updateFacultyTable(facultyData) {
+            const tbody = document.getElementById('facultyTableBody');
+            const loadingMessage = document.getElementById('loadingMessage');
+            const noDataMessage = document.getElementById('noDataMessage');
+            
+            loadingMessage.style.display = 'none';
+            
+            if (facultyData.length === 0) {
+                noDataMessage.style.display = 'block';
+                tbody.innerHTML = '';
+                return;
+            }
+            
+            noDataMessage.style.display = 'none';
+            
+            tbody.innerHTML = facultyData.map(faculty => `
+                <tr>
+                    <td><strong>${faculty.first_name} ${faculty.last_name}</strong></td>
+                    <td>${faculty.email}</td>
+                    <td><span class="badge bg-secondary">${faculty.faculty_id}</span></td>
+                    <td>${faculty.department}</td>
+                    <td>${faculty.contact_number}</td>
+                    <td>${new Date(faculty.created_at).toLocaleDateString()}</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary me-1" onclick="editFaculty(${faculty.id})">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" onclick="deleteFaculty(${faculty.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Handle add faculty form submission
+        document.getElementById('addFacultyForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {
+                first_name: formData.get('first_name'),
+                last_name: formData.get('last_name'),
+                email: formData.get('email'),
+                contact_number: formData.get('contact_number'),
+                faculty_id: formData.get('faculty_id'),
+                department: formData.get('department'),
+                password: formData.get('password'),
+                confirm_password: formData.get('confirm_password')
+            };
+
+            // Validate passwords match
+            if (data.password !== data.confirm_password) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            try {
+                const response = await fetch('backend/add_faculty.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('Faculty member added successfully!');
+                    this.reset();
+                    loadFacultyData(); // Refresh the table
+                } else {
+                    alert('Failed to add faculty member: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while adding faculty member');
+            }
+        });
+
+        function editFaculty(facultyId) {
+            alert('Edit functionality for faculty ID: ' + facultyId + ' would be implemented here');
+        }
+
+        function deleteFaculty(facultyId) {
+            if (confirm('Are you sure you want to delete this faculty member?')) {
+                alert('Delete functionality for faculty ID: ' + facultyId + ' would be implemented here');
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('adminData');
+            localStorage.removeItem('userType');
+            window.location.href = 'index.html';
+        }
+
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', checkAuth);
+    </script>
+</body>
+</html>

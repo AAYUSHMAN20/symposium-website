@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Seminar - Symposium Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        .event-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .category-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.2s ease;
+        }
+        .category-card:hover {
+            transform: translateY(-2px);
+        }
+        .seminar-item {
+            background: rgba(248, 249, 250, 0.8);
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .seminar-item:hover {
+            background: rgba(0, 123, 255, 0.1);
+            border-color: #007bff;
+            transform: translateX(5px);
+        }
+        .seminar-item.selected {
+            background: rgba(0, 123, 255, 0.2);
+            border-color: #007bff;
+            border-width: 2px;
+        }
+        .student-info {
+            background: rgba(40, 167, 69, 0.1);
+            border: 1px solid rgba(40, 167, 69, 0.3);
+            border-radius: 10px;
+        }
+        .category-header {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: white;
+            border-radius: 10px 10px 0 0;
+            padding: 15px;
+            margin: 0;
+        }
+        .search-container {
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        .confirmation-section {
+            display: none;
+            background: rgba(40, 167, 69, 0.1);
+            border: 2px solid #28a745;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .qr-code-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="event-card p-4">
+                    <!-- Header -->
+                    <div class="text-center mb-4">
+                        <h1 class="display-4 text-primary">
+                            <i class="fas fa-calendar-alt"></i> Select Your Seminar
+                        </h1>
+                        <p class="lead text-muted">Choose a seminar topic that interests you</p>
+                    </div>
+
+                    <!-- Student Information -->
+                    <div id="studentInfo" class="student-info p-3 mb-4">
+                        <h5><i class="fas fa-user"></i> Student Information</h5>
+                        <div id="studentDetails">
+                            <!-- Student details will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Search and Filter -->
+                    <div class="search-container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                    <input type="text" class="form-control" id="searchInput" placeholder="Search seminars by topic or category...">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-select" id="categoryFilter">
+                                    <option value="">All Categories</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <small class="text-muted">
+                                <i class="fas fa-info-circle"></i> 
+                                Click on a seminar topic to select it. Your selection will be saved automatically.
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Seminars Display -->
+                    <div id="seminarsContainer">
+                        <div class="text-center py-4">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-2">Loading seminar topics...</p>
+                        </div>
+                    </div>
+
+                    <!-- Confirmation Section -->
+                    <div id="confirmationSection" class="confirmation-section">
+                        <h3 class="text-success">
+                            <i class="fas fa-check-circle"></i> Seminar Selected Successfully!
+                        </h3>
+                        <div id="selectedSeminarInfo" class="mt-3">
+                            <!-- Selected seminar info will be displayed here -->
+                        </div>
+                        <div class="qr-code-container">
+                            <img id="qrCodeImage" src="" alt="QR Code" style="max-width: 200px;">
+                        </div>
+                        <div class="mt-3">
+                            <a href="#" id="seminarLink" class="btn btn-primary btn-lg" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Access Seminar
+                            </a>
+                            <a href="student_dashboard.html" class="btn btn-success btn-lg ms-2">
+                                <i class="fas fa-tachometer-alt"></i> Go to Dashboard
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let seminars = [];
+        let filteredSeminars = [];
+        let selectedSeminar = null;
+        let studentData = null;
+
+        // Check authentication and load data
+        window.addEventListener('load', function() {
+            checkAuthentication();
+            loadStudentInfo();
+            loadSeminars();
+        });
+
+        function checkAuthentication() {
+            const userType = localStorage.getItem('userType');
+            studentData = JSON.parse(localStorage.getItem('studentData') || '{}');
+            
+            if (userType !== 'student' || !studentData.id) {
+                alert('Please register first to access this page.');
+                window.location.href = 'index.html';
+                return;
+            }
+        }
+
+        function loadStudentInfo() {
+            if (studentData) {
+                document.getElementById('studentDetails').innerHTML = `
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Name:</strong> ${studentData.name}</p>
+                            <p><strong>Email:</strong> ${studentData.email}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Roll Number:</strong> ${studentData.roll_number}</p>
+                            <p><strong>Status:</strong> <span class="badge bg-warning">Seminar Selection Pending</span></p>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        async function loadSeminars() {
+            try {
+                const response = await fetch('backend/get_seminars.php');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Convert grouped data to flat array for easier handling
+                    seminars = [];
+                    Object.keys(result.data).forEach(category => {
+                        result.data[category].forEach(seminar => {
+                            seminars.push({
+                                ...seminar,
+                                category: category
+                            });
+                        });
+                    });
+                    
+                    filteredSeminars = [...seminars];
+                    populateCategoryFilter();
+                    displaySeminars();
+                } else {
+                    throw new Error(result.message);
+                }
+            } catch (error) {
+                console.error('Error loading seminars:', error);
+                document.getElementById('seminarsContainer').innerHTML = `
+                    <div class="alert alert-danger text-center">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Failed to load seminars. Please refresh the page or contact support.
+                        <br><small>Error: ${error.message}</small>
+                    </div>
+                `;
+            }
+        }
+
+        function populateCategoryFilter() {
+            const categories = [...new Set(seminars.map(s => s.category))];
+            const filterSelect = document.getElementById('categoryFilter');
+            
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                filterSelect.appendChild(option);
+            });
+        }
+
+        function displaySeminars() {
+            const container = document.getElementById('seminarsContainer');
+            
+            if (filteredSeminars.length === 0) {
+                container.innerHTML = `
+                    <div class="alert alert-info text-center">
+                        <i class="fas fa-search"></i>
+                        No seminars found matching your search criteria.
+                    </div>
+                `;
+                return;
+            }
+
+            // Group seminars by category
+            const grouped = {};
+            filteredSeminars.forEach(seminar => {
+                if (!grouped[seminar.category]) {
+                    grouped[seminar.category] = [];
+                }
+                grouped[seminar.category].push(seminar);
+            });
+
+            let html = '';
+            Object.keys(grouped).forEach(category => {
+                html += `
+                    <div class="category-card">
+                        <h4 class="category-header">
+                            <i class="fas fa-folder"></i> ${category}
+                        </h4>
+                        <div class="p-3">
+                `;
+                
+                grouped[category].forEach(seminar => {
+                    html += `
+                        <div class="seminar-item" onclick="selectSeminar('${seminar.topic}', '${category}')">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="mb-1">${seminar.topic}</h6>
+                                    <small class="text-muted">${category}</small>
+                                </div>
+                                <div>
+                                    <i class="fas fa-chevron-right text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        async function selectSeminar(topic, category) {
+            if (confirm(`Are you sure you want to select "${topic}"?`)) {
+                try {
+                    const response = await fetch('backend/select_seminar.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            student_id: studentData.id,
+                            seminar_topic: topic,
+                            category: category
+                        })
+                    });
+
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        selectedSeminar = {
+                            topic: topic,
+                            category: category,
+                            link: result.data.seminar_link,
+                            qr_code: result.data.qr_code
+                        };
+                        
+                        showConfirmation();
+                        
+                        // Update localStorage
+                        studentData.seminar_topic = topic;
+                        studentData.seminar_link = result.data.seminar_link;
+                        studentData.qr_code = result.data.qr_code;
+                        localStorage.setItem('studentData', JSON.stringify(studentData));
+                        
+                    } else {
+                        alert('Failed to select seminar: ' + result.message);
+                    }
+                } catch (error) {
+                    console.error('Error selecting seminar:', error);
+                    alert('An error occurred while selecting the seminar.');
+                }
+            }
+        }
+
+        function showConfirmation() {
+            // Hide seminars container
+            document.getElementById('seminarsContainer').style.display = 'none';
+            document.querySelector('.search-container').style.display = 'none';
+            
+            // Show confirmation
+            const confirmationSection = document.getElementById('confirmationSection');
+            confirmationSection.style.display = 'block';
+            
+            // Update confirmation details
+            document.getElementById('selectedSeminarInfo').innerHTML = `
+                <h4>${selectedSeminar.topic}</h4>
+                <p class="text-muted">Category: ${selectedSeminar.category}</p>
+                <p><strong>Seminar Link:</strong> <a href="${selectedSeminar.link}" target="_blank">${selectedSeminar.link}</a></p>
+            `;
+            
+            document.getElementById('qrCodeImage').src = selectedSeminar.qr_code;
+            document.getElementById('seminarLink').href = selectedSeminar.link;
+            
+            // Update student status
+            document.getElementById('studentDetails').innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Name:</strong> ${studentData.name}</p>
+                        <p><strong>Email:</strong> ${studentData.email}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Roll Number:</strong> ${studentData.roll_number}</p>
+                        <p><strong>Status:</strong> <span class="badge bg-success">Seminar Selected</span></p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            filterSeminars();
+        });
+
+        document.getElementById('categoryFilter').addEventListener('change', function() {
+            filterSeminars();
+        });
+
+        function filterSeminars() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            
+            filteredSeminars = seminars.filter(seminar => {
+                const matchesSearch = seminar.topic.toLowerCase().includes(searchTerm) ||
+                                    seminar.category.toLowerCase().includes(searchTerm);
+                const matchesCategory = !categoryFilter || seminar.category === categoryFilter;
+                
+                return matchesSearch && matchesCategory;
+            });
+            
+            displaySeminars();
+        }
+    </script>
+</body>
+</html>

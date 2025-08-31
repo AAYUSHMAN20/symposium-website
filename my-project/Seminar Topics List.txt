@@ -1,0 +1,209 @@
+1.	Real-Time AI in Autonomous Drones: A Case Study on Navigation and Obstacle Avoidance
+2.	AI-Powered Medical Diagnosis: Applications of Deep Learning in Radiology
+3.	Case Study on Reinforcement Learning for Robotics in Industrial Automation
+4.	Explainable AI (XAI): Techniques and Applications in Healthcare
+5.	Federated Learning in Smart Devices: Privacy-Preserving ML Applications
+6.	Predictive Analytics for Smart Cities: Case Study Using Big Data from Urban Sensors
+7.	Real-Time Traffic Management Using Big Data Analytics: A Case Study
+8.	Data Science in Agriculture: Crop Yield Prediction Using Satellite Data
+9.	Big Data and Sports Analytics: Performance Optimization in Professional Leagues
+10.	Case Study on Customer Behavior Prediction in E-Commerce Using Data Science
+11.	AI in Cyber Threat Detection: Case Study on Anomaly Detection Systems
+12.	Zero Trust Architecture: Implementation in Enterprise Networks
+13.	Ransomware Detection with Machine Learning: A Case Study in Banking Sector
+14.	Blockchain for Secure Identity Management in Government Applications
+15.	Case Study on Social Engineering Attacks and Cyber Awareness Training
+16.	IoT in Smart Healthcare: Real-Time Patient Monitoring Systems
+17.	Edge AI in IoT: A Case Study on Smart Traffic Systems
+18.	IoT and Blockchain Integration for Supply Chain Transparency
+19.	Case Study on IoT-Based Predictive Maintenance in Manufacturing
+20.	Smart Farming with IoT: Real-Time Monitoring and Resource Optimization
+21.	Facial Recognition for Secure Access: Ethical and Technical Case Study
+22.	Vision-Based Quality Control in Manufacturing Using Deep Learning
+23.	NLP in Legal Document Analysis: A Case Study on AI-Powered Contract Review
+24.	Multimodal Learning: Combining Vision and Language in Robotics
+25.	Transformer-Based Models in NLP: Case Study on BERT for Sentiment Analysis
+26.	Smart Contracts in Real Estate Transactions: A Blockchain Case Study
+27.	Blockchain for Educational Credential Verification
+28.	Decentralized Finance (DeFi): Case Study of Lending Protocols on Ethereum
+29.	Blockchain in Food Supply Chain Traceability
+30.	Tokenization of Assets: Case Study on NFTs in Digital Art
+31.	Case Study on GPT-Based Chatbots for Customer Support
+32.	Deepfake Detection Using CNNs: A Case Study
+33.	LLMs for Code Generation: Applications and Limitations in Software Development
+34.	Transfer Learning with Transformers for Low-Resource Languages
+35.	Ethical Challenges of LLMs in Education: Use and Misuse Case Study
+36.	Case Study on Digital Twin Implementation in Smart Factories
+37.	AI-Enabled Cyber-Physical Systems for Disaster Management
+38.	Smart Grid Optimization Using Cyber-Physical Systems
+39.	Human-Machine Interaction in Autonomous Vehicles
+40.	Case Study on CPS in Remote Health Monitoring and Alert Systems
+41.	Semantic Analysis in Legal Document Summarization: A Case Study Using BERT Models
+42.	Generative AI for Content Creation: Case Study on Marketing Copy Generation with GPT-4
+43.	Real-Time Sentiment and Semantic Analysis in E-Governance Platforms
+44.	Case Study on Generative AI in Drug Discovery: From Molecule to Medicine
+45.	Ethical Implications of Generative AI in Education: An Analytical Case Study
+46.	Quantum Computing for Optimization Problems: Case Study in Logistics
+47.	Neuromorphic Computing in Edge Devices: A Case Study on Energy-Efficient AI
+48.	Quantum Machine Learning for Portfolio Management in Finance
+49.	Simulating Brain-Inspired Architectures: Case Study on Intel’s Loihi Chips
+50.	Quantum Cryptography for Secure Communication in Government Systems
+51.	Explainable AI in Autonomous Diagnosis: Case Study in Healthcare AI Transparency
+52.	Agentic AI in Personal Digital Assistants: From Passive Tools to Proactive Agents
+53.	Interpretable Models for Fraud Detection in Banking: An Explainable AI Case Study
+54.	Case Study on Agentic AI in Workplace Automation and Productivity Tools
+55.	Ethical and Legal Boundaries of Agentic AI in Decision-Making Systems
+56.	Augmented Reality in Industrial Training: A Case Study on Skill Enhancement
+57.	XR for Medical Education: A Case Study in Virtual Surgery Simulations
+58.	AR-Based Smart Navigation for Visually Impaired: Implementation & Impact
+59.	Extended Reality in Heritage Preservation: A Case Study from Cultural Tourism
+60.	Immersive Retail: Case Study on XR-Driven Virtual Shopping Experiences
+61.	IoT and AI for Sustainable Farming: Case Study on Precision Agriculture
+62.	Biotechnology-Enabled Crop Monitoring Using Computer Vision
+63.	Sustainable Computing: Green Data Centers Powered by AI and IoT
+64.	Case Study on AI-Driven Vertical Farming for Urban Sustainability
+65.	Bioinformatics and AI in Enhancing Crop Resistance: A Tech-Agriculture Case Study
+66.	Swarm Robotics in Disaster Response: Real-World Deployment Case Study
+67.	AI-Driven Autonomous Delivery Robots: A Case Study from Last-Mile Logistics
+68.	Self-Healing Materials in Robotics: A Case Study in Advanced Prosthetics
+69.	Autonomous Vehicles in Smart Cities: Integration and Impact Case Study
+70.	Explainable Decision-Making in Autonomous Cars: Challenges and Solutions
+71.	Wireless Sensor Networks in Forest Fire Detection: A Case Study
+72.	Smart Water Management Using IoT and WSN in Urban Infrastructure
+73.	Case Study on Real-Time Soil Health Monitoring Using WSN in Indian Farms
+74.	Integration of WSN and AI for Wildlife Conservation and Tracking
+75.	WSN-Based Early Warning Systems in Earthquake-Prone Regions
+76.	Generative AI in Software Development: A Case Study on GitHub Copilot
+77.	Quantum Machine Learning for Pattern Recognition: A Case Study Using Qiskit
+78.	AI-Driven Cybersecurity: Intrusion Detection in Enterprise Networks
+79.	Digital Twin Technology for Smart City Infrastructure Monitoring
+80.	Edge AI for Real-Time Smart Surveillance Using NVIDIA Jetson Nano
+81.	Federated Learning in Healthcare: Diabetic Retinopathy Detection Without Data Sharing
+82.	Blockchain for Supply Chain Transparency: Case Study of Walmart’s Food Traceability System
+83.	Virtual Collaboration in the Metaverse: A Case Study on Meta’s Horizon Workrooms
+84.	Explainable AI in FinTech: Transparent Loan Approval Systems
+85.	Self-Healing Software Systems: Netflix’s Approach Using Chaos Engineering
+86.	Swarm Robotics in Agriculture: Coordinated Drone-Based Crop Monitoring
+87.	Neuromorphic Computing for Gesture Recognition: Intel Loihi in Action
+88.	6G Network and Tactile Internet: Remote Surgery Use Case Analysis
+89.	AI-Based Code Generation and Debugging: A Comparison Between GPT-4 and Human Coders
+90.	Zero Trust Security in Cloud Computing: Google's Beyond Corp Model
+91.	IoT-Based Predictive Maintenance in Smart Factories
+92.	Augmented Reality in STEM Education: Enhancing Learning Through AR Apps
+93.	Organoid Intelligence: Bio-Computing Applications in Pattern Recognition
+94.	AI-Powered Mental Health Chatbots: Case Study on Wysa and Woebot
+95.	Green Computing in Cloud Infrastructure: Google’s AI-Optimized Data Centers
+96.	Synthetic Data Generation with Generative AI: Use Case in Autonomous Vehicle Training
+97.	AI Ethics and Bias Mitigation: A Case Study on Hiring Algorithms
+98.	Real-Time Language Translation Using LLMs: Meta’s SeamlessM4T as a Case Study
+99.	Cyber-Physical Systems in Smart Homes: Integration of AI and IoT
+100.	Privacy-Preserving AI: Case Study on Apple’s On-Device Machine Learning
+101.	Designing Agentic AI Systems for Autonomous Decision-Making: Application in Multi-Agent Coordination and a Case Study using BDI Architecture
+102.	Agentic AI in Personalized Healthcare: Application in Chronic Disease Management and Case Study on Goal-Driven Virtual Health Assistants
+103.	Agentic AI for Safe Navigation in Autonomous Vehicles: Application of Intent-Aware Agents and Case Study on Urban Traffic Simulation
+104.	Agentic AI in Precision Agriculture: Application in Crop Monitoring and Case Study of Autonomous Drone Swarms Using Cognitive Agents
+105.	Agentic AI in Human-Robot Collaboration: Application in Industrial Robotics and Case Study on Intent-Driven Task Allocation in Smart Factories
+106.	Agentic AI for Context-Aware Services in Smart Cities: Application in Urban Mobility Management and Case Study on Multi-Agent Traffic Light Control
+107.	Agentic AI in Emergency Response Systems: Application in Real-Time Rescue Coordination and Case Study Using Cognitive Agents for Earthquake Scenarios
+108.	Agentic AI for Autonomous Decision-Making: Applications in Disaster Response and a Case Study on Real-Time Rescue Simulation using Cognitive Agents
+109.	AI-Powered Chatbots in Mental Health Support: Application in Cognitive Behavioral Therapy and Case Study on Woebot's User Interaction Patterns
+110.	Conversational Agents for Personalized Learning: Application in Adaptive Tutoring and Case Study of ChatGPT Integration in E-Learning Platforms
+111.	Intelligent Chatbots for Customer Engagement: Application in Online Retail and Case Study on Dialogflow Implementation in Myntra’s Support System
+112.	Secure Conversational AI in Banking: Application in Fraud Detection Assistance and Case Study on HDFC Eva Chatbot Deployment
+113.	Chatbots for E-Governance: Application in Citizen Grievance Redressal and Case Study on India's MyGov Chatbot Performance
+114.	AI Chatbots for Talent Acquisition: Application in Automated Candidate Screening and Case Study on Paradox Olivia in Hiring Workflows
+115.	Crisis Chatbots for Emergency Communication: Application in Disaster Helplines and Case Study of WhatsApp Bots in Healthcare
+116.	Advances in Human-Computer Interface through Natural Language Processing: Application in Voice Assistants and Case Study on Amazon Alexa’s Conversational Design
+117.	Neuroadaptive Human-Computer Interfaces: Application in Assistive Technologies and Case Study on EEG-based Cursor Control Systems
+118.	Human-Computer Interaction for Inclusive Design: Application in Assistive Input Devices and Case Study on Eye-Tracking Systems for Motor-Impaired Users
+119.	Immersive Human-Computer Interfaces: Application in AR/VR Environments and Case Study on Gesture-Based Interaction in Oculus Quest Applications
+120.	Human-Centered Interaction in Social Robotics: Application in Companion Robots and Case Study on NAO Robot in Elderly Care
+121.	Designing Adaptive Human-Computer Interfaces: Application in Multimodal Smartphone UIs and Case Study on Gboard’s Predictive Interaction Model
+122.	Human-Computer Interaction through Wearable Devices: Application in Health Monitoring and Case Study on UX Design in Fitbit Ecosystem
+123.	CNN based Smart Surveillance System: A Smart IoT Application Post COVID-19 Era
+124.	Super-fast Refresh Holographic Display based on Liquid Crystal Films Doped with Silver Nanoparticles
+125.	Design and Validation of Multifunctional Android based Smart Home Control and Monitoring System
+126.	Big Data- Based Improved Data Acquisition and Storage System for Designing Industrial Data Platform
+127.	DEEP- HEAR: A multimodal subtitle positioning system dedicated to deaf and hearing impaired people.
+128.	An Intelligent Agriculture Network Security System based on Private Block Chains
+129.	enhanced Player Interaction using Motion Controller for First-Person Shooting Games in Virtual Reality
+130.	Big Data virtualization in cardiology a systematic Review and future Directions
+131.	Lightweight Sharable and Traceable Secure Mobile health System
+132.	SignQuiz:A Quiz based tool for Learning Finger spelled Signs in Indian sign Language Using ASLR
+133.	Green 6G Network: Architecture and Technologies
+134.	Intelligence Sign Prediction with Behavior Prediction for Signed Heterogeneous Information Networks.
+135.	Alphapwd: A Password Generation Strategy Based on Mnemonic Shape
+136.	Mobile Web Augmented reality in 5G and beyond: Challenges, opportunities and future directions.
+137.	Enhancing Cloud -based IOT Security through Trustworthy Cloud service: An Integration of Security and Reputation Approach
+138.	A smart Walking Stick Powered by Artificial Intelligence for the Visually Impaired.
+139.	Fetal weight Estimation via Ultrasound Using Machine Learning
+140.	Artificial Intelligence based mobile tracking and Antenna Pointing in Satellite Terrestrial Network.
+141.	The (in) Security of Virtualization in Software Defined Networks.
+142.	A Multi-Patient Data-Driven Approach to Blood Glucose Prediction
+143.	A Machine Learning Approach for Fall Detection And Daily Living Activity Recognition
+144.	An Integrated Holistic Model for E health System. A National implementation approach And a new cloud based security model
+145.	A Hierarchical Dimension Reduction Approach for Big Data with Application to Fault Diagnostic
+146.	A survey of Block Chain Technology Applied to Smart Cities: Research Issues and Challenges
+147.	Understanding edge computing :Engineering evolution with artificial intelligence
+148.	Cyber pulse: A Machine Learning Based Link Flooding Attack Migration System for Software Defined Networks
+149.	Web server log analysis for unstructured data using Apache Flume and Pig
+150.	Any charge: An IoT based wireless charging service for the public
+151.	Multifactor Authentication Protocol in a Mobile environment
+152.	Foundation and solution of modern computing paradigms cloud, IOT, Edge and Fog
+153.	IoT-Fog based healthcare framework to identify and control hypertension attack
+154.	Highly secures C31 communication network Based on Block chain technology for military system
+155.	A Novel Approach for Multi-Label class X-Ray classification of common Thorax Diseases
+156.	Authentication and Verification of Social Networking Accounts using Block Chain Technology
+157.	Smart farming: Agriculture's shift from a labor intensive to technology native industry
+158.	Design of Traffic Emergency Response System Based on Internet of things and Data Mining in Emergencies
+159.	Cost-Efficient and Quality of Experience Aware Provisioning of Virtual Machines for Multiplayer Cloud Gaming in Geographically Distributed Data Centers
+160.	Clean Energy consumption of power systems towards smart agriculture: Roadmap, bottlenecks and technologies
+161.	Data lake lambda architecture for smart grids big data analytics
+162.	FogFlow : Easy programming of IOT services over cloud and edges for smart cities
+163.	Honey DOC: An efficient Honeypot architecture enabling all-round design
+164.	Secured data collection with hardware-based ciphers for IOT-based Healthcare
+165.	Resource sharing of a computing access point for multi-user mobile loud offloading with delay constraints
+166.	Encryption-then compression systems using grayscale based image encryption for JPEG images
+167.	Virtual blind road following based wearable navigation device for blind people
+168.	Virtual Environments testing as a cloud service: A methodology for protecting & securing virtual infrastructure
+169.	A progressive web application based on micro service combining geospatial data and IOT
+170.	A new certificates signature scheme provably secure in the standard model
+171.	Robust low-cost passive UHF RFID based smart shopping trolley
+172.	IOT based smart grids supported by intelligent edge computing
+173.	Independent mix zone for location privacy in vehicular network
+174.	IOT for smart precision agriculture and farming in rural areas
+175.	Efficient metadata management in block level CDP system for cyber security
+176.	Traffic fingerprinting attacks on IOT using Machine Learning
+177.	Integration of data mining clustering approach in personalized e-learning system
+178.	Session key establishment and authentication in a smart home network using public key cryptography
+179.	Image Encryption based on interleaved computer generated hologram
+180.	Compact base station antenna based on image theory for UWB/5G RTLS embraced smart parking of driverless car
+181.	A new detection and prevention system for ARP attacks using static entry
+182.	Full lifecycle infrastructure management system for smart cities: A narrow band IOT based platform
+183.	Accounting for label uncertainty Machine learning for detecting of acute respiratory distress syndrome
+184.	Technology of hiding and protecting the secret image based on 2-channel deep hiding network
+185.	Frequent pattern mining on time and location aware air quality data
+186.	Effects of virtual reality and augmented reality on induced anxiety
+187.	Molecular based Nano communication network : A ring topology nano-bots for in-vivo drug delivery system
+188.	Understanding in-app ads and detecting hidden attacks through the mobile app-web interface
+189.	Classical and quantum cryptography for image encryption and decryption
+190.	A secure cloud storage framework with access control based on blockchain
+191.	Enhanced human face recognition using LBPH descriptor multi-KNN and back propagation neural network
+192.	Design and development of IOT gateway for smart building application
+193.	An IOT enabled stroke Rehabilitation system based on smart wearable armband and machine learning
+194.	Blockchain powered parallel healthcare systems based on the ACP approach
+195.	IOT: Air pollution monitoring system (IOT Mobair)
+196.	Enhanced cyber-physical security in IOT through energy auditing
+197.	Detection of glaucoma using anterior segment optical coherence tomography images
+198.	5G-QoE Modelling for ultra-HD video streaming in 5G networks
+199.	Privacy preserved ,provable secure, mutually authenticated key protocol for healthcare in smart city environment
+200.	YOMO: An efficient convolution neural network for face detection
+201.	Paintcopter : An autonomous UAV for Spray painting on 3D Surfaces
+202.	Smart health monitoring : Early prediction of heart problems through predictive analysis of ECG signals
+203.	TCP-Drinc: Smart congestion control based on deep reinforcement learning
+204.	Electrical safety considerations in large scale electric vehicle charging stations
+205.	EACMS: Emergence Access Control management system for personal health record based on blockchain
+206.	QTCP: Adaptive congestion control with reinforcement learning
+207.	Designing future precision agriculture: Detection of seed germination using AI on a low-power embedded system
+208.	An IOT enabled smart sensing system for nitrate monitoring
+209.	Evaluating the operational application of SMAP for global agriculture drought monitoring

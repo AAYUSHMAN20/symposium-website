@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Database Schema</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4><i class="fas fa-database"></i> Database Schema Update</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-info">
+                            <h5><i class="fas fa-info-circle"></i> Required Database Update</h5>
+                            <p>To fix the student registration issue, we need to update the database schema to allow students to register without immediately selecting a seminar topic.</p>
+                            <p><strong>This update will:</strong></p>
+                            <ul>
+                                <li>Modify the <code>seminar_topic</code> column in the <code>students</code> table to allow NULL values</li>
+                                <li>Allow students to register and select seminars later</li>
+                                <li>Fix the registration form submission issue</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button id="updateBtn" class="btn btn-success btn-lg">
+                                <i class="fas fa-cogs"></i> Update Database Schema
+                            </button>
+                        </div>
+                        
+                        <div id="result" class="mt-4" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script>
+        document.getElementById('updateBtn').addEventListener('click', async function() {
+            const btn = this;
+            const originalText = btn.innerHTML;
+            const resultDiv = document.getElementById('result');
+            
+            // Show loading state
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Updating Database...';
+            btn.disabled = true;
+            
+            try {
+                const response = await fetch('update_students_table.php');
+                const text = await response.text();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <div class="alert alert-success">
+                            <h5><i class="fas fa-check-circle"></i> Update Successful!</h5>
+                            <pre>${text}</pre>
+                            <hr>
+                            <p><strong>Next Steps:</strong></p>
+                            <ol>
+                                <li>Go back to your main website</li>
+                                <li>Try registering as a student</li>
+                                <li>You should now be redirected to event.html after registration</li>
+                            </ol>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="alert alert-danger">
+                            <h5><i class="fas fa-exclamation-triangle"></i> Update Failed</h5>
+                            <pre>${text}</pre>
+                            <p>Please check your database connection and try again.</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="alert alert-danger">
+                        <h5><i class="fas fa-exclamation-triangle"></i> Error</h5>
+                        <p>Failed to update database: ${error.message}</p>
+                    </div>
+                `;
+            } finally {
+                resultDiv.style.display = 'block';
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

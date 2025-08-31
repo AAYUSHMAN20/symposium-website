@@ -7,7 +7,7 @@
 // Database configuration for local development
 define('DB_HOST', 'localhost');        // Database host (usually localhost)
 define('DB_USERNAME', 'root');         // Your MySQL username (default for XAMPP is 'root')
-define('DB_PASSWORD', 'ayush');             // Your MySQL password (default for XAMPP is empty)
+define('DB_PASSWORD', '');             // Your MySQL password (default for XAMPP is empty)
 define('DB_NAME', 'symposium_db');     // Database name
 
 // Create connection
